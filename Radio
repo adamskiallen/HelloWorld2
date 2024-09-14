@@ -1,0 +1,66 @@
+import keyboard as key # type: ignore
+import time
+import playsound # type: ignore
+
+radio = True
+freq = 1000
+
+def start():
+    print("Main Initiated")
+    radiotuner(radio,freq)
+
+def radiotuner(radio,freq):
+    print("Radio Initiated")
+    while radio == True:
+        # if key.read_key() == "w":
+        #     if freq == 1700:
+        #         freq = 540
+        #     else:
+        #         freq=freq+10       
+        # elif key.read_key() == "s":
+        #     if freq == 540:
+        #         freq=1700
+        #     else:
+        #         freq=freq-10
+        # elif key.read_key() == "q":
+        #     radio = False
+        #     waiter(radio)
+        #     print(radio)
+        # print(freq, "KHz")
+        # print(radio)
+
+        match key.read_key():
+            case "w":
+                if freq == 1700:
+                    freq = 540  
+                else:
+                    freq=freq+5
+            case "s":
+                if freq == 540:
+                    freq=1700
+                else:
+                    freq=freq-5
+            case "q" :
+                waiter(radio)
+                print(radio)
+            case _ :
+                print("Invalid Key")
+        print(freq, "KHz")
+        print(radio)
+
+def waiter(radio):
+    radio = False
+    print("I'm Waiting...")
+    print(radio)
+    match key.read_key():
+        case "o":
+            radio = True
+            radiotuner(radio,freq)
+        case _:
+            print("i'm still waiting")
+            time.sleep(10)
+        
+
+
+if __name__ == "__main__" :
+    start()
